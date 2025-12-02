@@ -1,26 +1,29 @@
+
 .admin-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #74ebd5, #9face6);
 }
 
+
 .admin-navbar {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 25px;
   background-color: #2196f3;
-  color: #fff;
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+  border-radius: 10px;
+
 }
 
-.admin-navbar button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
+.admin-navbar h2 {
+  margin: 0;
 }
 
 .nav-tabs {
@@ -41,47 +44,68 @@
   background-color: #1976d2;
 }
 
-.admin-main {
-  flex: 1;
-  padding: 40px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.section-cadastro {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
-
-.section-cadastro label {
-  margin-top: 12px;
-  font-weight: 600;
-  display: block;
-}
-
-.section-cadastro input,
-.section-cadastro select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 8px;
-  border: 2px solid #ddd;
-}
-
-.section-cadastro button {
-  margin-top: 18px;
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  background-color: #4a90e2;
+.admin-navbar button {
+  background-color: #f44336;
   color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
-.section-cadastro button:hover {
+
+.admin-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  background: linear-gradient(to right, #74ebd5, #9face6);
+
+}
+
+
+.card button:hover {
   background-color: #3574c8;
+}
+
+
+.section-profissionais table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.section-profissionais th, 
+.section-profissionais td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.section-profissionais th {
+  background: #f4f4f4;
+  font-weight: 600;
+}
+
+.section-profissionais tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.section-profissionais tr:hover {
+  background: #eaeaea;
+}
+
+.btn-remove {
+  background: #ff4747;
+  border: none;
+  padding: 6px 12px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-remove:hover {
+  background: #c63636;
 }

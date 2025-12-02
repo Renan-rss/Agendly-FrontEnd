@@ -1,6 +1,8 @@
-// src/pages/CadastroProfissional/CadastroProfissional.jsx
+
 import { useState } from "react";
 import { salvarProfissional } from "../../utils/auth";
+import "./CadastroProfissional.css";
+
 
 export default function CadastroProfissional() {
 

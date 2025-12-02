@@ -6,11 +6,9 @@
   font-family: "Poppins", sans-serif;
 }
 
-body {
-  background-color: #f0f2f5;
-}
 
-/* Navbar */
+
+
 .profissional-navbar {
   width: 100%;
   background-color: #4a90e2;
@@ -20,6 +18,7 @@ body {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 10px;
 }
 
 .profissional-navbar h2 {
@@ -39,6 +38,7 @@ body {
 
 .profissional-navbar button:hover {
   background: #e6e6e6;
+
 }
 
 /* Main */
@@ -57,7 +57,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* Lista de agendamentos */
+
 .profissional-main ul {
   list-style: none;
 }
@@ -77,7 +77,7 @@ body {
   background-color: #f9f9f9;
 }
 
-/* Botão marcar atendido */
+
 .profissional-main li button {
   background-color: #4a90e2;
   color: #fff;
@@ -92,7 +92,6 @@ body {
   background-color: #3574c8;
 }
 
-/* Mensagem caso não haja agendamentos */
 .profissional-main p {
   text-align: center;
   font-size: 16px;

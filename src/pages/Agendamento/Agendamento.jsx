@@ -9,8 +9,8 @@ export default function Agendamento() {
     horario: "" 
   });
 
-  const profissionais = JSON.parse(localStorage.getItem("profissionais")) || [];
-
+  const profissionais = JSON.parse(localStorage.getItem("usuarios"))?.filter(u => u.tipo === "profissional") || [];
+  
   function handleChange(e) { setForm({ ...form, [e.target.name]: e.target.value }); }
 
   function handleSubmit(e) { e.preventDefault(); const agendamentos = JSON.parse(localStorage.getItem("agendamentos")) || [];
