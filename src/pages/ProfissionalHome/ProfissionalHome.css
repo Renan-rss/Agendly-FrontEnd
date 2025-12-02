@@ -1,0 +1,101 @@
+/* Reset e fonte */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f0f2f5;
+}
+
+/* Navbar */
+.profissional-navbar {
+  width: 100%;
+  background-color: #4a90e2;
+  color: #fff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.profissional-navbar h2 {
+  font-size: 20px;
+}
+
+.profissional-navbar button {
+  background: #fff;
+  color: #4a90e2;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.profissional-navbar button:hover {
+  background: #e6e6e6;
+}
+
+/* Main */
+.profissional-main {
+  max-width: 800px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.profissional-main h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Lista de agendamentos */
+.profissional-main ul {
+  list-style: none;
+}
+
+.profissional-main li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  transition: 0.2s;
+}
+
+.profissional-main li:hover {
+  background-color: #f9f9f9;
+}
+
+/* Botão marcar atendido */
+.profissional-main li button {
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.profissional-main li button:hover {
+  background-color: #3574c8;
+}
+
+/* Mensagem caso não haja agendamentos */
+.profissional-main p {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin-top: 20px;
+}
