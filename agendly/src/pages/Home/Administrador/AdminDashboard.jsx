@@ -47,4 +47,8 @@ export default function AdminDashboard() {
       </div>
     </>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8fd268d9cbed36d5feb2440a53798fbb6e0189e4

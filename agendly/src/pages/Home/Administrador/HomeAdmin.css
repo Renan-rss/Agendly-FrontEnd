@@ -118,6 +118,16 @@
   padding: 20px 5%;
 }
 
+.menu li a {
+  color: inherit;       
+  text-decoration: none; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+
 
 .panel {
   padding: 35px; 
