@@ -38,7 +38,7 @@ export default function Login() {
           <label>
             <input type="checkbox" /> Lembrar de mim
           </label>
-          <a href="#">Esqueceu a senha?</a>
+          <Link to="/reset-senha">Esqueceu a senha?</Link>
         </div>
         <button type="submit">Entrar</button>
         <div className="signup-link">
