@@ -1,57 +1,59 @@
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import {
   FaCalendarCheck,
   FaClipboardList,
-  FaUser
+  FaUser,
+  FaSignOutAlt
 } from "react-icons/fa";
 
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./Profissional.css";
 
 export default function Profissional() {
-
-  const location = useLocation();
   const navigate = useNavigate();
 
-  function ativo(path) {
-    return location.pathname === path;
+  function handleLogout() {
+    
+    localStorage.removeItem("usuarioLogado");
+    navigate("/");
   }
 
   return (
     <div className="profissional-container">
-
       <div className="sidebar">
         <h2 className="logo">Agendly</h2>
 
         <ul className="menu">
-
-          <li
-            className={ativo("/profissional") ? "active" : ""}
-            onClick={() => navigate("/profissional")}
-          >
-            <FaCalendarCheck className="icon" /> Agenda
+          <li>
+            <Link to="/profissional">
+              <FaCalendarCheck className="icon" /> Agenda
+            </Link>
           </li>
 
-          <li
-            className={ativo("/profissional/atendimentos") ? "active" : ""}
-            onClick={() => navigate("/profissional/atendimentos")}
-          >
-            <FaClipboardList className="icon" /> Atendimentos
+          <li>
+            <Link to="/profissional/atendimentos">
+              <FaClipboardList className="icon" /> Atendimentos
+            </Link>
           </li>
 
-          <li
-            className={ativo("/profissional/perfil") ? "active" : ""}
-            onClick={() => navigate("/profissional/perfil")}
-          >
-            <FaUser className="icon" /> Perfil
+          <li>
+            <Link to="/profissional/perfil">
+              <FaUser className="icon" /> Perfil
+            </Link>
           </li>
 
+          
+          <li 
+            onClick={handleLogout} 
+            style={{ cursor: 'pointer', color: '#ff4d4d', marginTop: '20px' }}
+          >
+            <FaSignOutAlt className="icon" /> Sair
+          </li>
         </ul>
       </div>
 
       <main className="content">
         <Outlet />
       </main>
-
     </div>
   );
 }

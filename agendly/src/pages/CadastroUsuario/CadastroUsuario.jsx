@@ -8,6 +8,7 @@ import {
   FaIdBadge,
   FaBook,
 } from "react-icons/fa";
+import { criarUsuario } from "../../services/usuarioService";
 import "./CadastroUsuario.css";
 
 export default function CadastroUsuario() {
@@ -44,26 +45,35 @@ export default function CadastroUsuario() {
     }
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+ async function handleSubmit(e) {
+  e.preventDefault();
 
-    if (form.senha !== form.confirmarSenha) {
-      alert("As senhas não coincidem.");
-      return;
-    }
-
-    if (!form.isAdministrador && form.curso === "") {
-      alert("Selecione um curso para continuar o cadastro de aluno.");
-      return;
-    }
-
-    const usuariosSalvos = JSON.parse(localStorage.getItem("usuarios")) || [];
-    usuariosSalvos.push(form);
-    localStorage.setItem("usuarios", JSON.stringify(usuariosSalvos));
-
-    alert("Cadastro realizado com sucesso!");
-    navigate("/admin"); 
+  if (form.senha !== form.confirmarSenha) {
+    alert("As senhas não coincidem");
+    return;
   }
+
+  
+  const payload = {
+  nome: form.nome,
+  email: form.email,
+  senha: form.senha,
+  telefone: form.telefone,
+  tipoUser: form.isAdministrador ? "ADMIN" : "ESTUDANTE",
+  matricula: form.isAdministrador ? null : Number(form.matricula),
+  curso: form.isAdministrador ? null : form.curso
+};
+
+  try {
+    await criarUsuario(payload); 
+    alert("Usuário cadastrado com sucesso");
+    navigate("/");
+  } catch (error) {
+    console.error("Erro detalhado:", error.response?.data || error.message);
+    alert("Erro ao cadastrar usuário. Verifique se a matrícula já existe ou se os campos estão corretos.");
+  }
+}
+
   
 
   return (

@@ -30,14 +30,20 @@
   padding: 0;
 }
 
-.menu li {
-  padding: 12px;
+.menu li, .menu a {
+  text-decoration: none;
+  color: inherit;
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.menu li {
+  padding: 12px;
   cursor: pointer;
   border-radius: 8px;
   transition: 0.2s;
+  margin-bottom: 5px;
 }
 
 .menu li:hover,
@@ -49,62 +55,61 @@
   font-size: 18px;
 }
 
-
-
-
 .content {
   flex: 1;
   padding: 30px;
   overflow-y: auto;
-
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.header h1 {
-  text-align: center;
-  width: 100%;
-}
-
-
-
-.card-form {
+.card-form, .perfil-card {
   width: 420px;
   padding: 20px;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.23);
   backdrop-filter: blur(20px);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-  margin-bottom: 40px;
-
-  display: flex;
-  justify-content: center;
 }
 
-.card-form form {
+.card-form form, .perfil-card {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 100%;
 }
 
-.card-form label {
+.card-form label, .perfil-card label {
   font-size: 14px;
   opacity: 0.85;
+  text-align: left;
 }
 
-.card-form input,
-.card-form select {
+.card-form input, 
+.card-form select, 
+.card-form textarea,
+.perfil-card input {
   padding: 10px;
   border-radius: 8px;
   border: none;
   background: rgba(255, 255, 255, 0.4);
   color: #000;
   font-size: 15px;
+  width: 100%;
 }
 
-.card-form button {
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.col {
+  flex: 1;
+}
+
+
+.card-form button, .btn-editar {
   margin-top: 10px;
   padding: 12px;
   background: #4c8df5;
@@ -116,20 +121,14 @@
   transition: 0.2s;
 }
 
-.card-form button:hover {
+.card-form button:hover, .btn-editar:hover {
   background: #3574d4;
 }
 
 
-
-
-.section-historico {
+.section-historico, .section-perfil {
   width: 100%;
   text-align: center;
-}
-
-.section-historico h1 {
-  padding: 10px;
 }
 
 .placeholder {
@@ -139,57 +138,10 @@
   text-align: center;
   color: #ddd;
   width: 420px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
-
-
-
-.section-perfil {
-  width: 100%;
-  text-align: center;
-}
 
 .perfil-card {
-  width: 420px;
   margin: 0 auto;
-  padding: 20px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.23);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.perfil-card label {
-  text-align: left;
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-.perfil-card input {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background: rgba(255, 255, 255, 0.4);
-  color: #000;
-}
-
-.btn-editar {
-  margin-top: 15px;
-  padding: 12px;
-  background: #4c8df5;
-  color: #fff;
-  font-weight: 600;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.btn-editar:hover {
-  background: #3574d4;
 }

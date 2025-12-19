@@ -1,3 +1,6 @@
+/* ==========================================================================
+   LAYOUT PRINCIPAL (ESTILO ORIGINAL)
+   ========================================================================== */
 .admin-container {
   display: flex;
   width: 1100px;
@@ -7,6 +10,7 @@
   color: #fff;
   font-family: "Inter", sans-serif;
   border-radius: 12px;
+  margin: 20px auto;
 }
 
 .sidebar {
@@ -51,84 +55,58 @@
   width: 100%;
 }
 
-
 .content {
   flex: 1;
   overflow-y: auto;
+  padding-bottom: 30px;
 }
 
-
+/* ==========================================================================
+   CABECALHO DAS ABAS (PROFISSIONAIS, ESTUDANTES, ETC)
+   ========================================================================== */
 .header {
   display: flex;
+  justify-content: space-between; /* Alinha titulo a esquerda e botao a direita */
   align-items: center;
-  padding: 18px 0;
-  margin-bottom: 25px;
+  padding: 25px 40px;
+  margin-bottom: 10px;
 }
 
 .header h1 {
   font-size: 28px;
   font-weight: 600;
-  margin-left: 30px;
-}
-
-
-.cards {
-  display: grid;
-  width: 750px;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-  margin: 0 4%;
-}
-
-.card {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 20px;
-  border-radius: 14px;
-  backdrop-filter: blur(18px);
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  height: 120px;
-}
-
-.icon.big {
-  font-size: 36px;
-  opacity: 0.8;
-}
-
-.card p {
   margin: 0;
+}
+
+.header p {
+  margin: 5px 0 0 0;
   font-size: 14px;
   opacity: 0.7;
 }
 
-.card h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-
-.dashboard-grid {
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px 5%;
-}
-
-.menu li a {
-  color: inherit;       
-  text-decoration: none; 
+/* Botao de acao no topo (Novo Cadastro) */
+.btn-header-action {
+  background: #4c8df5;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
   display: flex;
   align-items: center;
-  gap: 10px;
-  width: 100%;
+  gap: 8px;
 }
 
+.btn-header-action:hover {
+  background: #3574d4;
+  transform: translateY(-2px);
+}
 
-
+/* ==========================================================================
+   PAINEL DE FORMULÁRIO (CADASTRO)
+   ========================================================================== */
 .panel {
   padding: 35px; 
   border-radius: 14px;
@@ -138,15 +116,26 @@
   margin: 0 auto;
 }
 
-
 .panel-form {
-  max-width: 650px; 
+  max-width: 700px; 
 }
 
 .panel-form form {
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .panel-form label {
@@ -160,6 +149,44 @@
   border-radius: 10px;
   border: none;
   font-size: 15px;
+  background: #ebebeb;
+  color: #333;
+}
+
+/* Disponibilidade */
+.disponibilidade-container {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dias-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 20px 0;
+}
+
+.dia-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.dia-item.selected {
+  background: #4c8df5;
+  border-color: #4c8df5;
+}
+
+.dia-item input {
+  display: none;
 }
 
 .panel-form button {
@@ -175,6 +202,80 @@
   transition: 0.2s;
 }
 
-.panel-form button:hover {
-  background: #3574d4;
+/* ==========================================================================
+   LISTAGEM E ESTADOS VAZIOS
+   ========================================================================== */
+.empty-state {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 60px;
+  text-align: center;
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.empty-state p {
+  font-size: 18px;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 40px;
+  margin-top: 10px;
+}
+
+.item-card {
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-left: 5px solid #2ecc71;
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background: #e8f5e9;
+  color: #2ecc71;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.item-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+.btn-delete:hover {
+  background: #fdeaea;
 }

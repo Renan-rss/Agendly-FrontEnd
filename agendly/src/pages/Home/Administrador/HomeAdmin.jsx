@@ -1,4 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   FaUsers,
   FaUserMd,
@@ -6,11 +7,20 @@ import {
   FaChartLine,
   FaCog,
   FaBook,
+  FaSignOutAlt,
 } from "react-icons/fa";
 
 import "./HomeAdmin.css";
 
 export default function HomeAdmin() {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    // Remove o usuário do localStorage
+    localStorage.removeItem("usuarioLogado");
+    navigate("/");
+  }
+
   return (
     <div className="admin-container">
       <div className="sidebar">
@@ -37,27 +47,14 @@ export default function HomeAdmin() {
 
           <li>
             <Link to="/admin/alunos">
-              <FaUsers className="icon" /> Alunos
+              <FaUsers className="icon" /> Estudantes
             </Link>
           </li>
 
-          <li>
-            <Link to="/admin/agendamento">
-              <FaCalendarCheck className="icon" /> Agendamentos
-            </Link>
+          <li onClick={handleLogout} style={{ cursor: 'pointer', color: '#ff4d4d' }}>
+            <FaSignOutAlt className="icon" /> Sair
           </li>
 
-          <li>
-            <Link to="/admin/relatorios">
-              <FaBook className="icon" /> Relatórios
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/admin/configuracao">
-              <FaCog className="icon" /> Configurações
-            </Link>
-          </li>
         </ul>
       </div>
 
