@@ -61,3 +61,58 @@
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.23);
 }
+
+.disponibilidade-container {
+  margin-top: 15px;
+  width: 400px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dias-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 10px 0 20px 0;
+}
+
+.dia-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.dia-item.selected {
+  background: #4c8df5;
+  border-color: #4c8df5;
+}
+
+.dia-item input {
+  display: none;
+}
+
+.panel-form button {
+  margin-top: 16px;
+  padding: 14px;
+  background: #4c8df5;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+
+}
+.panel-form .btn-submit {
+  width: 100%;
+}
+
+

@@ -98,24 +98,8 @@ export default function CadastrarProfissional() {
               <select name="cargo" value={formData.cargo} onChange={handleChange} required>
                 <option value="">Selecione...</option>
                 <option value="PEDAGOGICO">Pedagógico</option>
-                <option value="PSICOSSOCIAL">Psicossocial</option>
+                <option value="PISCOSOCIAL">Piscosocial</option>
               </select>
-            </div>
-          </div>
-
-          <div className="disponibilidade-container compact-atendimento">
-            <h3>Disponibilidade</h3>
-            <div className="dias-grid">
-              {diasOpcoes.map(opcao => (
-                <label key={opcao.value} className={`dia-item ${diasSelecionados.includes(opcao.value) ? 'selected' : ''}`}>
-                  <input type="checkbox" onChange={() => handleCheckboxChange(opcao.value)} />
-                  {opcao.label}
-                </label>
-              ))}
-            </div>
-            <div className="form-row">
-              <input type="time" value={horaInicio} onChange={(e) => setHoraInicio(e.target.value)} />
-              <input type="time" value={horaFim} onChange={(e) => setHoraFim(e.target.value)} />
             </div>
           </div>
 

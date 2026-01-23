@@ -230,15 +230,29 @@
   margin-top: 10px;
 }
 
-.item-card {
-  background: #fff;
-  padding: 15px 20px;
-  border-radius: 10px;
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 50px;
+  margin-top: 20px;
+  align-items: stretch;
+}
+
+.card {
+  width: 100%;              
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  border-left: 5px solid #2ecc71;
+  gap: 15px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  min-height: 120px;
+  box-sizing: border-box;
+}
+
+.icon.big {
+  font-size: 40px;
 }
 
 .item-info {

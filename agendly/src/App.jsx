@@ -26,6 +26,7 @@ import Atendimentos from "./pages/Home/Profissional/Atendimentos";
 import PerfilProfissional from "./pages/Home/Profissional/PerfilProfissional";
 
 import "./App.css";
+import Disponibilidade from "./pages/Home/Profissional/Disponibilidade";
 
 export default function App() {
   return (
@@ -36,33 +37,36 @@ export default function App() {
         <Route path="/cadastro" element={<CadastroUsuario />} />
         <Route path="/reset-senha" element={<ResetSenha />} />
 
-        {/*  Administrador */}
-        <Route element={<PrivateRoute allowedRoles={["ADMIN"]} />}>
+        {/** <Route element={<PrivateRoute allowedRoles={["ADMIN"]} />}> */} 
+        
           <Route path="/admin" element={<HomeAdmin />}>
             <Route index element={<AdminDashboard />} />
             <Route path="profissionais" element={<Profissionais />} />
             <Route path="cadastrar-profissional" element={<CadastrarProfissional />} />
             <Route path="alunos" element={<Estudante />} />
           </Route>
-        </Route>
+        
+        {/**</Route>  */}
 
-        {/* Estudante */}
-        <Route element={<PrivateRoute allowedRoles={["ESTUDANTE"]} />}>
+        {/*<Route element={<PrivateRoute allowedRoles={["ESTUDANTE"]} />}> */}
+        
           <Route path="/estudante" element={<HomeStudent />}>
             <Route index element={<Agendar />} />
             <Route path="historico" element={<Historico />} />
             <Route path="perfil" element={<PerfilEstudante />} />
           </Route>
-        </Route>
+        
+        {/** </Route>*/}
 
-        {/* Profissional */}
-        <Route element={<PrivateRoute allowedRoles={["PROFISSIONAL"]} />}>
+        {/* <Route element={<PrivateRoute allowedRoles={["PROFISSIONAL"]} />}> */}
+        
           <Route path="/profissional" element={<Profissional />}>
             <Route index element={<Agenda />} />
             <Route path="atendimentos" element={<Atendimentos />} />
+            <Route path="disponibilidade" element={<Disponibilidade/>}/>
             <Route path="perfil" element={<PerfilProfissional />} />
           </Route>
-        </Route>
+        {/**</Route>*/}
 
       </Routes>
     </div>

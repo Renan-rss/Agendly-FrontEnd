@@ -10,23 +10,28 @@ export default function Login() {
   const [senha, setSenha] = useState("");
 
   
-  async function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
+
   try {
-    const response = await login(email, senha);
-    const usuario = response.data; 
+    const response = await login({
+      email: email,
+      senha: senha
+    });
+    console.log("LOGIN.JSX → retorno do login():", response);
 
-    // Salva no navegador para a PrivateRoute e o Perfil usarem
-    localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+    const role = response.role;
 
-    if (usuario.tipoUser === "ADMIN") navigate("/admin");
-    else if (usuario.tipoUser === "ESTUDANTE") navigate("/estudante");
-    else if (usuario.tipoUser === "PROFISSIONAL") navigate("/profissional");
+
+    if (role === "ADMIN") navigate("/admin");
+    else if (role === "ESTUDANTE") navigate("/estudante");
+    else if (role === "PROFISSIONAL") navigate("/profissional");
 
   } catch (error) {
     alert("Usuário ou senha inválidos");
     console.error(error);
   }
+
 }
 
   return (
@@ -42,6 +47,13 @@ export default function Login() {
         <div className="input-field">
           <input type="password" placeholder="Senha" onChange={e => setSenha(e.target.value)} />
           <FaLock className="icon" />
+        </div>
+
+        <div className="recall-forget">
+          <label>
+            <input type="checkbox" /> Lembrar de mim
+          </label>
+          <a href="/reset-senha">Esqueceu a senha?</a>
         </div>
 
         <button type="submit">Entrar</button>

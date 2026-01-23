@@ -40,7 +40,7 @@ export default function AdminDashboard() {
   return (
     <>
       <header className="header">
-        <h1>Visão Geral</h1>
+        <h1>Dashboard</h1>
       </header>
 
       <div className="cards">

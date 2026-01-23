@@ -3,7 +3,8 @@ import {
   FaCalendarCheck,
   FaClipboardList,
   FaUser,
-  FaSignOutAlt
+  FaSignOutAlt,
+  FaRegClock 
 } from "react-icons/fa";
 
 import "./Profissional.css";
@@ -36,12 +37,15 @@ export default function Profissional() {
           </li>
 
           <li>
+            <Link to="/profissional/disponibilidade">
+              <FaRegClock className="icon" /> Disponibilidade
+            </Link>
+          </li>
+          <li>
             <Link to="/profissional/perfil">
               <FaUser className="icon" /> Perfil
             </Link>
           </li>
-
-          
           <li 
             onClick={handleLogout} 
             style={{ cursor: 'pointer', color: '#ff4d4d', marginTop: '20px' }}

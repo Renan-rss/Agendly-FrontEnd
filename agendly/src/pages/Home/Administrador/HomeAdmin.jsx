@@ -1,5 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../../services/authService";
 import {
   FaUsers,
   FaUserMd,
@@ -16,10 +17,11 @@ export default function HomeAdmin() {
   const navigate = useNavigate();
 
   function handleLogout() {
-    // Remove o usuário do localStorage
-    localStorage.removeItem("usuarioLogado");
-    navigate("/");
-  }
+  logout();
+  navigate("/", { replace: true }
+
+  );
+}
 
   return (
     <div className="admin-container">
