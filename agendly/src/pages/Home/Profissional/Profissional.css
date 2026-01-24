@@ -116,3 +116,67 @@
 }
 
 
+.profissionais-lista .header {
+  position: sticky;
+  top: 0; 
+  padding: 15px 0;
+  z-index: 10;
+
+}
+
+.profissional-card {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(44, 43, 43, 0.948);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  width: 500px; 
+  max-width: 100%;
+
+}
+
+
+.profissional-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profissional-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #fff;
+  
+}
+
+.profissional-info p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+.profissional-avatar {
+  font-size: 28px;
+  color: #35d03f;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+
+

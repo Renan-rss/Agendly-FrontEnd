@@ -2,24 +2,23 @@ import { Routes, Route } from "react-router-dom";
 
 import PrivateRoute from "./components/PrivateRoute";
 
-// Componentes de Autenticação
+
 import Login from "./pages/Login/Login"; 
 import CadastroUsuario from "./pages/CadastroUsuario/CadastroUsuario"; 
 import ResetSenha from "./pages/ResetSenha/ResetSenha"; 
-// Admin 
+ 
 import HomeAdmin from "./pages/Home/Administrador/HomeAdmin";
 import AdminDashboard from "./pages/Home/Administrador/AdminDashboard";
 import Estudante from "./pages/Home/Administrador/Estudante";
 import CadastrarProfissional from "./pages/Home/Administrador/CadastrarProfissional";
 import Profissionais from "./pages/Home/Administrador/Profissionais";
 
-// Estudante 
 import HomeStudent from "./pages/Home/Estudante/HomeEstudante";
 import Agendar from "./pages/Home/Estudante/Agendar";
 import Historico from "./pages/Home/Estudante/Historico";
 import PerfilEstudante from "./pages/Home/Estudante/PerfilEstudante"; 
 
-// Profissional 
+
 import Profissional from "./pages/Home/Profissional/Profissional";
 import Agenda from "./pages/Home/Profissional/Agenda";
 import Atendimentos from "./pages/Home/Profissional/Atendimentos";
