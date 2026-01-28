@@ -16,16 +16,12 @@ export function listarServicos() {
     return api.get("/servico"); 
 }
 
-export function criarEstudante(dados) {
-    return api.post("/estudantes/registrar", dados);
-}
-
 export function criarUsuario(dados) {
     return api.post("/usuario/registrar", dados);
 }
 
 export function criarEstudante(dados) {
-    return api.post("/api/estudantes/registrar", dados);
+    return api.post("/estudantes/registrar", dados);
 }
 
 export function buscarUsuarioPorId(id) {
@@ -37,7 +33,7 @@ export function atualizarUsuario(id, dados) {
 }
 
 export const deletarUsuario = (id) => {
-    return api.delete(`/api/usuario/deletar/${id}`);
+    return api.delete(`/usuario/deletar/${id}`);
 };
 
 export const deletarEstudante = (id) => {
