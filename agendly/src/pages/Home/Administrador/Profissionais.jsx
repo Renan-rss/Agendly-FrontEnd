@@ -1,12 +1,12 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { listarProfissionais, deletarProfissional } from "../../../services/profissionalService.js";
-import { FaTrash, FaUserMd, FaEnvelope, FaIdCard } from "react-icons/fa";
+import { FaTrash, FaUserMd, FaEnvelope, FaIdCard, FaSearch } from "react-icons/fa";
 
 export default function Profissionais() {
   const [profissionais, setProfissionais] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(""); 
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     carregarProfissionais();
@@ -16,7 +16,7 @@ export default function Profissionais() {
     try {
       setLoading(true);
       const res = await listarProfissionais();
-      setProfissionais(res.data); 
+      setProfissionais(res.data || []); 
     } catch (err) {
       console.error("Erro ao carregar profissionais:", err);
     } finally {
@@ -36,30 +36,63 @@ export default function Profissionais() {
     }
   }
 
- return (
-  <div className="profissionais-container">
-    <header className="profissionais-header-fixed">
-      <div className="header-info">
-        <h1>Profissionais</h1>
-      </div>
-    </header>
-    <div className="profissionais-lista" style={{ paddingTop: '80px' }}>
-      {profissionais.map(prof => (
-        <div key={prof.id} className="profissional-card">
-          <div className="profissional-info">
-            <div className="profissional-avatar"><FaUserMd /></div>
-            <div>
-              <h3>{prof.nome}</h3>
-              <p><FaEnvelope /> {prof.email}</p>
-              <p><FaIdCard /> {prof.cargo} {prof.registroProf ? `- ${prof.registroProf}` : ''}</p>
-            </div>
-          </div>
-          <button className="btn-delete" onClick={() => handleDeletar(prof.id)}>
-            <FaTrash />
-          </button>
+  const profissionaisFiltrados = profissionais.filter(prof =>
+    prof.nome?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    prof.email?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="estudantes-lista"> {/* Mesma classe da tela de alunos */}
+      <header className="estudantes-header"> {/* Mesma classe da tela de alunos */}
+        <div className="header-titles">
+          <h1>Profissionais</h1>
         </div>
-      ))}
+        
+        <div className="search-container">
+          <FaSearch className="search-icon" />
+          <input
+            type="text"
+            placeholder="Pesquisar por nome ou email..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+        </div>
+      </header>
+
+      <div className="estudante-lista-cards"> {/* Mesma classe da tela de alunos */}
+        {loading ? (
+          <div className="empty-state">
+            <p>Carregando profissionais...</p>
+          </div>
+        ) : profissionaisFiltrados.length === 0 ? ( 
+          <div className="empty-state">
+            <p>{searchTerm ? "Nenhum resultado encontrado para sua busca." : "Nenhum profissional encontrado."}</p>
+          </div>
+        ) : (
+          profissionaisFiltrados.map((prof) => (
+            <div key={prof.id} className="estudante-card"> {/* Mesma classe do card de aluno */}
+              <div className="estudante-info">
+                <div className="estudante-avatar">
+                  <FaUserMd />
+                </div>
+                <div>
+                  <h3>{prof.nome}</h3>
+                  <p><FaEnvelope /> {prof.email}</p>
+                  <p><FaIdCard /> {prof.cargo} {prof.registroProf ? `- ${prof.registroProf}` : ''}</p>
+                </div>
+              </div>
+              <button
+                className="estudante-btn-delete"
+                onClick={() => handleDeletar(prof.id)}
+                title="Excluir Profissional"
+              >
+                <FaTrash />
+              </button>
+            </div>
+          ))
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
 }

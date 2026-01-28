@@ -1,7 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 
-import PrivateRoute from "./components/PrivateRoute";
-
 
 import Login from "./pages/Login/Login"; 
 import CadastroUsuario from "./pages/CadastroUsuario/CadastroUsuario"; 
@@ -12,6 +10,8 @@ import AdminDashboard from "./pages/Home/Administrador/AdminDashboard";
 import Estudante from "./pages/Home/Administrador/Estudante";
 import CadastrarProfissional from "./pages/Home/Administrador/CadastrarProfissional";
 import Profissionais from "./pages/Home/Administrador/Profissionais";
+import CadastrarAdmin from "./pages/Home/Administrador/CadastrarAdmin";
+import Admins from "./pages/Home/Administrador/Admins";
 
 import HomeStudent from "./pages/Home/Estudante/HomeEstudante";
 import Agendar from "./pages/Home/Estudante/Agendar";
@@ -43,6 +43,8 @@ export default function App() {
             <Route path="profissionais" element={<Profissionais />} />
             <Route path="cadastrar-profissional" element={<CadastrarProfissional />} />
             <Route path="alunos" element={<Estudante />} />
+            <Route path="admins" element={<Admins />} />
+            <Route path="cadastrar-admin" element={<CadastrarAdmin />} />
           </Route>
         
         {/**</Route>  */}

@@ -1,13 +1,11 @@
-import { Outlet, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+/* eslint-disable no-unused-vars */
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { logout } from "../../../services/authService";
 import {
   FaUsers,
   FaUserMd,
-  FaCalendarCheck,
+  FaUserShield, 
   FaChartLine,
-  FaCog,
-  FaBook,
   FaSignOutAlt,
 } from "react-icons/fa";
 
@@ -17,11 +15,9 @@ export default function HomeAdmin() {
   const navigate = useNavigate();
 
   function handleLogout() {
-  logout();
-  navigate("/", { replace: true }
-
-  );
-}
+    logout();
+    navigate("/", { replace: true });
+  }
 
   return (
     <div className="admin-container">
@@ -36,8 +32,20 @@ export default function HomeAdmin() {
           </li>
 
           <li>
+            <Link to="/admin/alunos">
+              <FaUsers className="icon" /> Estudantes
+            </Link>
+          </li>
+
+          <li>
             <Link to="/admin/profissionais">
               <FaUserMd className="icon" /> Profissionais
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/admin/admins">
+              <FaUserShield className="icon" /> Administradores
             </Link>
           </li>
 
@@ -48,15 +56,14 @@ export default function HomeAdmin() {
           </li>
 
           <li>
-            <Link to="/admin/alunos">
-              <FaUsers className="icon" /> Estudantes
+            <Link to="/admin/cadastrar-admin">
+              <FaUserShield className="icon" /> Cadastrar Admin
             </Link>
           </li>
 
-          <li onClick={handleLogout} style={{ cursor: 'pointer', color: '#ff4d4d' }}>
+          <li onClick={handleLogout} style={{ cursor: 'pointer', color: '#ff4d4d', marginTop: '20px' }}>
             <FaSignOutAlt className="icon" /> Sair
           </li>
-
         </ul>
       </div>
 
