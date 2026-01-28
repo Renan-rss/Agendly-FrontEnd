@@ -2,26 +2,26 @@ import { api } from "./api";
 
 
 export function criarAgendamento(dados) {
-  return api.post("/agendamentos", dados);
+  return api.post("/api/agendamentos", dados);
 }
 
 export function listarAgendamentos() {
-  return api.get("/agendamentos");
+  return api.get("/api/agendamentos");
 }
 
 export function cancelarAgendamento(id) {
-  return api.put(`/agendamentos/cancelar/${id}`);
+  return api.put(`/api/agendamentos/cancelar/${id}`);
 }
 
 
 export function listarAtendimentos() {
-  return api.get("/agendamentos/profissional");
+  return api.get("/api/agendamentos/profissional");
 }
 
 export function finalizarAtendimento(id) {
-  return api.put(`/agendamentos/finalizar/${id}`);
+  return api.put(`/api/agendamentos/finalizar/${id}`);
 }
 
 export function buscarEstatisticasConcluidas() {
-  return api.get("/agendamentos/estatisticas/concluidos");
+  return api.get("/api/agendamentos/estatisticas/concluidos");
 }

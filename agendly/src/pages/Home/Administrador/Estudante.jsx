@@ -1,11 +1,12 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { listarEstudantes, deletarEstudante } from "../../../services/estudanteService";
-import { FaTrash, FaGraduationCap, FaEnvelope, FaIdCard } from "react-icons/fa";
-
+import { FaTrash, FaGraduationCap, FaEnvelope, FaIdCard, FaSearch } from "react-icons/fa";
 
 export default function Alunos() {
   const [alunos, setAlunos] = useState([]);
+  const [busca, setBusca] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -37,10 +38,28 @@ export default function Alunos() {
     }
   }
 
+  const alunosFiltrados = alunos.filter((aluno) =>
+    aluno.nome.toLowerCase().includes(busca.toLowerCase()) ||
+    aluno.matricula.toString().includes(busca)
+  );
+
   return (
     <div className="estudantes-lista">
       <header className="estudantes-header">
-        <h1>Estudantes</h1>
+        <div className="header-titles">
+          <h1>Estudantes</h1>
+        </div>
+        
+        <div className="search-container">
+          <FaSearch className="search-icon" />
+          <input
+            type="text"
+            placeholder="Pesquisar por nome ou matrícula..."
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+            className="search-input"
+          />
+        </div>
       </header>
 
       <div className="estudante-lista-cards">
@@ -48,12 +67,12 @@ export default function Alunos() {
           <div className="empty-state">
             <p>Carregando estudantes...</p>
           </div>
-        ) : alunos.length === 0 ? (
+        ) : alunosFiltrados.length === 0 ? ( 
           <div className="empty-state">
-            <p>Nenhum estudante encontrado.</p>
+            <p>{busca ? "Nenhum resultado encontrado para sua busca." : "Nenhum estudante encontrado."}</p>
           </div>
         ) : (
-          alunos.map((aluno) => (
+          alunosFiltrados.map((aluno) => (
             <div key={aluno.id} className="estudante-card">
               <div className="estudante-info">
                 <div className="estudante-avatar">

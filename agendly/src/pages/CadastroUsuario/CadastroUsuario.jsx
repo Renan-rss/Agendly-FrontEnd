@@ -73,7 +73,7 @@ export default function CadastroUsuario() {
       const token = response.data?.token || response.data?.accessToken;
       
       if (token) {
-        console.log("%c✅ TOKEN:", "color: #00ff00; font-weight: bold;", token);
+        console.log("LOGIN.JSX → retorno do login():", response);
         localStorage.setItem("token", token);
       } else {
         console.warn("Token não encontrado no objeto:", response.data);
