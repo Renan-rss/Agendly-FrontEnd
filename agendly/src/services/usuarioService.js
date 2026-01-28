@@ -24,9 +24,6 @@ export function criarUsuario(dados) {
     return api.post("/usuario/registrar", dados);
 }
 
-export function criarEstudante(dados) {
-    return api.post("/api/estudantes/registrar", dados);
-}
 
 export function buscarUsuarioPorId(id) {
     return api.get(`/usuario/${id}`);
