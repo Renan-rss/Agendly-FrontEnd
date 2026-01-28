@@ -1,0 +1,332 @@
+/* LAYOUT PRINCIPAL (ESTILO ORIGINAL) */
+.admin-container {
+  display: flex;
+  width: 1100px;
+  height: 85vh;
+  backdrop-filter: blur(8px);
+  background: rgba(230, 227, 227, 0.07);
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  border-radius: 12px;
+  margin: 20px auto;
+}
+
+.sidebar {
+  width: 290px;
+  background: rgba(7, 0, 136, 0.12);
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  padding: 28px;
+  border-radius: 12px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 35px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.menu li:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.menu li a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 30px;
+}
+
+/* CABECALHO DAS ABAS (PROFISSIONAIS, ESTUDANTES, ETC) */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  margin-bottom: 10px;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.header p {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.btn-header-action {
+  background: #4c8df5;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-header-action:hover {
+  background: #3574d4;
+  transform: translateY(-2px);
+}
+
+/* PAINEL DE FORMULÁRIO (CADASTRO) */
+.panel {
+  padding: 35px; 
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.panel-form {
+  max-width: 700px; 
+}
+
+.panel-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.panel-form label {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.panel-form input,
+.panel-form select {
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  background: #ebebeb;
+  color: #333;
+}
+
+.disponibilidade-container {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dias-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 20px 0;
+}
+
+.dia-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.dia-item.selected {
+  background: #4c8df5;
+  border-color: #4c8df5;
+}
+
+.dia-item input {
+  display: none;
+}
+
+.panel-form button {
+  margin-top: 16px;
+  padding: 14px;
+  background: #4c8df5;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* LISTAGEM E ESTADOS VAZIOS */
+.empty-state {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 60px;
+  text-align: center;
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.empty-state p {
+  font-size: 18px;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 40px;
+  margin-top: 10px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 50px;
+  margin-top: 20px;
+  align-items: stretch;
+}
+
+.card {
+  width: 100%;              
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  min-height: 120px;
+  box-sizing: border-box;
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background: #e8f5e9;
+  color: #2ecc71;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.item-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+.btn-delete:hover {
+  background: #fdeaea;
+}
+
+/* BARRA DE PESQUISA */
+.estudantes-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  padding: 30px 40px;
+  gap: 20px;
+  width: 100%;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1); 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 12px 20px;
+  width: 78%;
+  max-width: 800px; 
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.search-container:focus-within {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #4c8df5; 
+  box-shadow: 0 0 15px rgba(76, 141, 245, 0.3);
+}
+
+.search-icon {
+  color: rgba(255, 255, 255, 0.6);
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+.search-input {
+  background: transparent !important;
+  border: none !important;
+  color: #fff !important;
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  padding: 0 !important; 
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}

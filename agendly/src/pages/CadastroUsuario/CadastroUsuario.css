@@ -1,0 +1,134 @@
+.cadcontainer {
+    width: 900px; 
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 55px 50px; 
+    border-radius: 12px;
+}
+
+.cadcontainer h1 {
+    text-align: center;
+    font-size: 32px; 
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.cadcontainer .input-field {
+    position: relative;
+    width: 100%;
+    height: 55px; 
+    margin: 28px auto; 
+}
+
+.input-field input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 40px;
+    font-size: 17px;
+    color: #fff;
+    padding: 20px 50px 20px 22px;
+}
+
+.input-field input::placeholder {
+    color: #fff;
+}
+
+.input-field .icon {
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px; 
+    color: #fff;
+}
+
+.cadcontainer button {
+    width: 100%;
+    height: 55px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: none;
+    margin-top: 20px;
+}
+
+.cadcontainer .signup-link {
+    font-size: 17px;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.cadcontainer .signup-link a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.cadcontainer.signup-link a:hover {
+    text-decoration: underline;
+}
+
+
+.two-colunn{
+    display: flex;
+    gap: 20px; 
+    margin: 28px auto;
+}
+
+.two-colunn .input-field {
+    flex: 1;
+    margin: 0; 
+}
+
+.input-field input,
+.input-field select {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 40px;
+  font-size: 17px;
+  color: #fff;
+  padding: 0 50px 0 22px; 
+  cursor: pointer;
+}
+
+.input-field select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.input-field select:required:invalid {
+    color: rgba(255, 255, 255, 0.6); 
+}
+
+.input-field select option {
+    background-color: rgba(40, 40, 40, 0.9); 
+    color: #fff;
+}
+
+.admin-toggle {
+    text-align: left;
+    margin: 15px 0 15px 5px; 
+    font-size: 16px;
+    color: #fff;
+}
+
+.admin-toggle label input[type="checkbox"] {
+    width: auto;
+    height: auto;
+    border: none;
+    margin-right: 10px;
+    accent-color: #fff; 
+}
+
