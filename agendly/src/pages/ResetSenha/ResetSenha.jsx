@@ -1,8 +1,9 @@
 import { FaUser, FaLock } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../services/api";
+import apiPublica from "../../services/apiPublica";
 import "../Login/Login.css";
-
 
 export default function ResetSenha() {
   const navigate = useNavigate();
@@ -11,33 +12,35 @@ export default function ResetSenha() {
   const [novaSenha, setNovaSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
 
-  function handleReset(e) {
-    e.preventDefault();
+ async function handleReset(e) {
+  e.preventDefault();
 
-    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-    const usuario = usuarios.find((u) => u.email === email);
+  if (novaSenha !== confirmarSenha) {
+    alert("As senhas não coincidem!");
+    return;
+  }
 
-    if (!usuario) {
-      alert("Nenhum usuário encontrado com esse email.");
-      return;
-    }
+  try {
+    await apiPublica.post("/usuarios/reset-senha", {
+      email,
+      novaSenha,
+    });
 
-    if (novaSenha !== confirmarSenha) {
-      alert("As senhas não coincidem!");
-      return;
-    }
-
-    usuario.senha = novaSenha;
-
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
     alert("Senha redefinida com sucesso!");
     navigate("/");
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao redefinir senha.");
   }
+}
+
+
 
   return (
     <div className="container">
       <form onSubmit={handleReset}>
         <h1>Redefinir Senha</h1>
+
         <div className="input-field">
           <input
             type="email"
@@ -48,6 +51,7 @@ export default function ResetSenha() {
           />
           <FaUser className="icon" />
         </div>
+
         <div className="input-field">
           <input
             type="password"
@@ -58,6 +62,7 @@ export default function ResetSenha() {
           />
           <FaLock className="icon" />
         </div>
+
         <div className="input-field">
           <input
             type="password"
@@ -68,8 +73,15 @@ export default function ResetSenha() {
           />
           <FaLock className="icon" />
         </div>
+
         <button type="submit">Redefinir</button>
-         <button type="button" style={{ marginTop: "10px" }} onClick={() => navigate("/")} >Voltar</button>
+        <button
+          type="button"
+          style={{ marginTop: "10px" }}
+          onClick={() => navigate("/")}
+        >
+          Voltar
+        </button>
       </form>
     </div>
   );

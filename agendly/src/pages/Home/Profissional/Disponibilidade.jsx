@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { salvarDisponibilidades } from "../../../services/disponibilidadeService";
 
 export default function Disponibilidade() {
   const navigate = useNavigate();
@@ -24,16 +25,28 @@ export default function Disponibilidade() {
     );
   };
 
-  function handleSalvar() {
-    const disponibilidade = {
-      diasSelecionados,
+ function handleSalvar() {
+  const payload = {
+    disponibilidades: diasSelecionados.map((dia) => ({
+      diaSemana: dia,
       horaInicio,
       horaFim,
-    };
+    })),
+  };
 
-    console.log("Disponibilidade:", disponibilidade);
-    navigate("/admin/cadastrar-profissional");
-  }
+  console.log("Payload enviado:", payload);
+
+  salvarDisponibilidades(payload)
+    .then(() => {
+      alert("Disponibilidade salva com sucesso!");
+      navigate("/profissional");
+    })
+    .catch((err) => {
+      console.error("Erro ao salvar disponibilidade:", err);
+      alert("Erro ao salvar disponibilidade");
+    });
+}
+
 
   return (
     <div className="content">
@@ -75,12 +88,11 @@ export default function Disponibilidade() {
               onChange={(e) => setHoraFim(e.target.value)}
             />
           </div>
-           <button className="btn-submit" onClick={handleSalvar}>
-          Salvar Disponibilidade
-           </button>
-        </div>
 
-       
+          <button className="btn-submit" onClick={handleSalvar}>
+            Salvar Disponibilidade
+          </button>
+        </div>
       </div>
     </div>
   );
