@@ -1,50 +1,59 @@
-import { useEffect, useState } from "react";
-import { buscarUsuarioPorId } from "../../../services/usuarioService";
-import EditarPerfil from "../../EditarPerfil/EditarPerfilUsuario";
+import { useState, useEffect } from "react";
+import { getPerfilEstudante } from "../../../services/estudanteService.js"; 
 
-export default function Perfil() {
-  const [usuario, setUsuario] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+export default function PerfilEstudante() {
+  const [usuario, setUsuario] = useState({
+    nome: "",
+    email: "",
+    matricula: "",
+    curso: "",
+    telefone: ""
+  });
 
   useEffect(() => {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-    if (usuarioLogado?.id) {
-      buscarUsuarioPorId(usuarioLogado.id)
-        .then(res => setUsuario(res.data))
-        .catch(err => console.error(err));
+    async function fetchPerfil() {
+      try {
+        const response = await getPerfilEstudante();
+        console.log("Dados do backend:", response.data);
+        setUsuario({
+          nome: response.data.nome || "Nome não retornado",
+          email: response.data.email || "Email não retornado",
+          matricula: response.data.matricula || "Matrícula não retornada",
+          curso: response.data.curso || "Curso não retornado",
+          telefone: response.data.telefone || "Sem telefone"
+        });
+      } catch (err) {
+        console.error("Erro ao buscar perfil:", err);
+      }
     }
-  }, []);
 
-  if (!usuario) {
-    return <p>Carregando perfil...</p>;
-  }
+    fetchPerfil();
+  }, []);
 
   return (
     <div className="section-perfil">
-      <h1>Meu Perfil</h1>
+      <header className="header">
+        <h1>Meu Perfil Estudante</h1>
+      </header>
 
       <div className="perfil-card">
         <label>Nome</label>
         <input type="text" disabled value={usuario.nome} />
 
         <label>Email</label>
-        <input type="email" disabled value={usuario.email} />
+        <input type="text" disabled value={usuario.email} />
 
-        <label>Telefone</label>
-        <input type="text" disabled value={usuario.telefone || ""} />
+        <label>Matrícula</label>
+        <input type="text" disabled value={usuario.matricula} />
 
-        <button className="btn-editar" onClick={() => setShowModal(true)}>
-          Editar Perfil
-        </button>
+        <label>Curso</label>
+        <input type="text" disabled value={usuario.curso} />
+
+        <label>Telefone de Contato</label>
+        <input type="text" disabled value={usuario.telefone} />
+
+        <button className="btn-editar">Editar Perfil</button>
       </div>
-
-      {showModal && (
-        <EditarPerfil
-          usuario={usuario}
-          onClose={() => setShowModal(false)}
-        />
-      )}
     </div>
   );
 }

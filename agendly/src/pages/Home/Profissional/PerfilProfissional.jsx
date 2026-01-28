@@ -1,23 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getPerfilProfissional } from "../../../services/profissionalService.js"; 
 
 export default function PerfilProfissional() {
-  const [usuario] = useState(() => {
-    const dadosSalvos = localStorage.getItem("usuarioLogado");
-    
-    if (dadosSalvos) {
-      const user = JSON.parse(dadosSalvos);
-      console.log("Dados no LocalStorage:", user); 
-
-      return {
-        
-        nome: user.nome || user.username || "Nome não retornado",
-        email: user.email || user.login || "Email não retornado",
-        cargo: user.cargo || user.tipoUser || "Especialista",
-        telefone: user.telefone || "Sem telefone"
-      };
-    }
-    return { nome: "", email: "", cargo: "", telefone: "" };
+  const [usuario, setUsuario] = useState({
+    nome: "",
+    email: "",
+    cargo: "",
+    telefone: ""
   });
+
+  useEffect(() => {
+    async function fetchPerfil() {
+      try {
+        const response = await getPerfilProfissional();
+        console.log("Dados do backend:", response.data);
+        setUsuario({
+          nome: response.data.nome || "Nome não retornado",
+          email: response.data.email || "Email não retornado",
+          cargo: response.data.cargo || "Especialista",
+          telefone: response.data.telefone || "Sem telefone"
+        });
+      } catch (err) {
+        console.error("Erro ao buscar perfil:", err);
+      }
+    }
+
+    fetchPerfil();
+  }, []);
 
   return (
     <div className="section-perfil">
@@ -26,9 +35,11 @@ export default function PerfilProfissional() {
       </header>
 
       <div className="perfil-card">
-        
         <label>Nome Completo</label>
         <input type="text" disabled value={usuario.nome} />
+
+        <label>E-mail</label>
+        <input type="text" disabled value={usuario.email} />
 
         <label>Especialidade / Cargo</label>
         <input type="text" disabled value={usuario.cargo} />

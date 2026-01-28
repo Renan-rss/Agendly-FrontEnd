@@ -1,14 +1,16 @@
 import { api } from "./api";
 
 export function listarProfissionais() {
-  return api.get("/api/profissionais"); 
+  return api.get("/profissionais"); 
 }
 
+export function getPerfilProfissional() {
+  return api.get("/profissionais/perfil");
+}
 export function cadastrarProfissional(data) {
-  return api.post("/api/profissionais/registrar", data);
+  return api.post("/profissionais/registrar", data); 
 }
 
 export function deletarProfissional(id) {
-  return api.delete(`/api/profissionais/${id}`);
+  return api.delete(`/profissionais/${id}`); 
 }
-
