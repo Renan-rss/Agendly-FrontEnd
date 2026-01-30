@@ -51,8 +51,6 @@ export default function PerfilEstudante() {
 
         <label>Telefone de Contato</label>
         <input type="text" disabled value={usuario.telefone} />
-
-        <button className="btn-editar">Editar Perfil</button>
       </div>
     </div>
   );

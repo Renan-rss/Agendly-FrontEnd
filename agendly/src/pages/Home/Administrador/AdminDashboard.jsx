@@ -1,38 +1,45 @@
 import { useEffect, useState } from "react";
 import { listarUsuarios } from "../../../services/usuarioService";
-import { listarAgendamentos, buscarEstatisticasConcluidas } from "../../../services/agendamentoService";
+import { listarTodosAgendamentos, buscarEstatisticasConcluidas } from "../../../services/agendamentoService";
 import { FaUsers, FaUserMd, FaCalendarCheck, FaChartLine } from "react-icons/fa";
 
 export default function AdminDashboard() {
-  const [counts, setCounts] = useState({ alunos: 0, profissionais: 0, agendamentos: 0, concluidos: 0 });
+  const [counts, setCounts] = useState({ 
+    alunos: 0, 
+    profissionais: 0, 
+    agendamentos: 0, 
+    concluidos: 0 
+  });
 
   useEffect(() => {
     let ativo = true;
 
     async function carregarDados() {
       try {
-        const [resUsers, resAgend, resConcl] = await Promise.all([
+        const resultados = await Promise.allSettled([
           listarUsuarios(),
-          listarAgendamentos(),
+          listarTodosAgendamentos(),
           buscarEstatisticasConcluidas()
         ]);
 
         if (ativo) {
-          const lista = resUsers.data || [];
-          
-          // O segredo estava aqui: a API manda 'tipoUser' e não 'role'
-          const totalAlunos = lista.filter(u => u.tipoUser === "ESTUDANTE").length;
-          const totalProfs = lista.filter(u => u.tipoUser === "PROFISSIONAL").length;
+          const resUsers = resultados[0].status === 'fulfilled' ? resultados[0].value.data : [];
+          const resAgend = resultados[1].status === 'fulfilled' ? resultados[1].value.data : [];
+          const resConcl = resultados[2].status === 'fulfilled' ? resultados[2].value.data : 0;
+
+          const totalAlunos = resUsers.filter(u => u.tipoUser === "ESTUDANTE").length;
+          const totalProfs = resUsers.filter(u => u.tipoUser === "PROFISSIONAL").length;
+          const valorConcluidos = typeof resConcl === 'object' ? (resConcl.total || 0) : resConcl;
 
           setCounts({
             alunos: totalAlunos,
             profissionais: totalProfs,
-            agendamentos: (resAgend.data || []).length,
-            concluidos: resConcl.data || 0
+            agendamentos: resAgend.length || 0,
+            concluidos: valorConcluidos || 0
           });
         }
       } catch (err) {
-        console.error("Erro na API", err);
+        console.error("Erro ao carregar dashboard", err);
       }
     }
 
@@ -41,15 +48,13 @@ export default function AdminDashboard() {
   }, []);
 
   return (
-    <div className="content" style={{ padding: '20px' }}>
-      <header className="header">
-        <h1>Dashboard</h1>
-      </header>
-
+    <div className="content">
+      <h1>Dashboard</h1>
+      
       <div className="cards">
         <div className="card">
           <FaUsers size={30} />
-          <div>
+          <div className="card-info">
             <p>Total de alunos</p>
             <h2>{counts.alunos}</h2>
           </div>
@@ -57,7 +62,7 @@ export default function AdminDashboard() {
 
         <div className="card">
           <FaUserMd size={30} />
-          <div>
+          <div className="card-info">
             <p>Profissionais</p>
             <h2>{counts.profissionais}</h2>
           </div>
@@ -65,7 +70,7 @@ export default function AdminDashboard() {
 
         <div className="card">
           <FaCalendarCheck size={30} />
-          <div>
+          <div className="card-info">
             <p>Agendamentos</p>
             <h2>{counts.agendamentos}</h2>
           </div>
@@ -73,7 +78,7 @@ export default function AdminDashboard() {
 
         <div className="card">
           <FaChartLine size={30} />
-          <div>
+          <div className="card-info">
             <p>Sessões concluídas</p>
             <h2>{counts.concluidos}</h2>
           </div>

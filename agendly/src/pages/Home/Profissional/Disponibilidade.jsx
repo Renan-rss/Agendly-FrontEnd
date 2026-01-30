@@ -60,33 +60,16 @@ export default function Disponibilidade() {
 
           <div className="dias-grid">
             {diasOpcoes.map((opcao) => (
-              <label
-                key={opcao.value}
-                className={`dia-item ${
-                  diasSelecionados.includes(opcao.value) ? "selected" : ""
-                }`}
-              >
-                <input
-                  type="checkbox"
-                  checked={diasSelecionados.includes(opcao.value)}
-                  onChange={() => handleCheckboxChange(opcao.value)}
-                />
+              <label key={opcao.value} className={`dia-item ${   diasSelecionados.includes(opcao.value) ? "selected" : ""}`}>
+                <input type="checkbox" checked={diasSelecionados.includes(opcao.value)} onChange={() => handleCheckboxChange(opcao.value)}/>
                 {opcao.label}
               </label>
             ))}
           </div>
 
           <div className="form-row">
-            <input
-              type="time"
-              value={horaInicio}
-              onChange={(e) => setHoraInicio(e.target.value)}
-            />
-            <input
-              type="time"
-              value={horaFim}
-              onChange={(e) => setHoraFim(e.target.value)}
-            />
+            <input type="time" value={horaInicio} onChange={(e) => setHoraInicio(e.target.value)}/>
+            <input type="time"value={horaFim}onChange={(e) => setHoraFim(e.target.value)}/>
           </div>
 
           <button className="btn-submit" onClick={handleSalvar}>

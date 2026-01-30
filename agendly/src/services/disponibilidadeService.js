@@ -1,13 +1,18 @@
-import api from "./api";
+import { api } from "./api";
 
-export function salvarDisponibilidades(payload) {
-  return api.post("/disponibilidades/disponibilidades", payload);
-}
 export function listarHorariosDisponiveis(profissionalId, data) {
   return api.get("/disponibilidades/horarios", {
-    params: {
-      profissionalId,
-      data
+    params: { 
+        profissionalId: profissionalId, 
+        data: data 
     }
   });
+}
+
+export function salvarDisponibilidades(payload) {
+  return api.post("/disponibilidades", payload);
+}
+
+export function buscarDiasTrabalho(profissionalId) {
+  return api.get(`/disponibilidades/dias/${profissionalId}`);
 }

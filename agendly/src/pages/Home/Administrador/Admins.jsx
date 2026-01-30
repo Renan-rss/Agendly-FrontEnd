@@ -56,13 +56,7 @@ export default function Admin() {
         </div>
         <div className="search-container">
           <FaSearch className="search-icon" />
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Pesquisar por nome ou e-mail..."
-            value={busca}
-            onChange={(e) => setBusca(e.target.value)}
-          />
+          <input type="text" className="search-input" placeholder="Pesquisar por nome ou e-mail..." value={busca} onChange={(e) => setBusca(e.target.value)}/>
         </div>
       </header>
 
@@ -77,22 +71,16 @@ export default function Admin() {
           adminsFiltrados.map((admin) => (
             <div key={admin.id} className="estudante-card">
               <div className="estudante-info">
-                {/* Ícone com a mesma cor de destaque dos estudantes, mas usando o escudo */}
                 <div className="estudante-avatar">
                   <FaUserShield />
                 </div>
                 <div>
                   <h3>{admin.nome || admin.email.split('@')[0]}</h3>
                   <p><FaEnvelope /> {admin.email}</p>
-                  {/* Linha extra para igualar a altura do card de estudantes */}
                   <p><FaIdBadge /> Nível de Acesso: Administrador</p>
                 </div>
               </div>
-              <button
-                className="estudante-btn-delete"
-                onClick={() => handleDeletar(admin.id)}
-                title="Excluir Administrador"
-              >
+              <button className="estudante-btn-delete" onClick={() => handleDeletar(admin.id)} title="Excluir Administrador">
                 <FaTrash />
               </button>
             </div>

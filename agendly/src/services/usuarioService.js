@@ -1,15 +1,15 @@
 import { api } from "./api";
 
-export function listarEstudantes() {
-    return api.get("/usuario"); 
-}
-
 export function listarUsuarios() {
     return api.get("/usuario"); 
 }
 
 export function listarProfissionais() {
-    return api.get("/usuario");
+    return api.get("/profissionais"); 
+}
+
+export function listarEstudantes() {
+    return api.get("/usuario"); 
 }
 
 export function listarServicos() {
@@ -24,7 +24,6 @@ export function criarUsuario(dados) {
     return api.post("/usuario/registrar", dados);
 }
 
-
 export function buscarUsuarioPorId(id) {
     return api.get(`/usuario/${id}`);
 }
@@ -34,7 +33,7 @@ export function atualizarUsuario(id, dados) {
 }
 
 export const deletarUsuario = (id) => {
-    return api.delete(`/api/usuario/deletar/${id}`);
+    return api.delete(`/usuario/deletar/${id}`);
 };
 
 export const deletarEstudante = (id) => {

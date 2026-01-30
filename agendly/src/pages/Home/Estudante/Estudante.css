@@ -1,4 +1,3 @@
-
 .user-container {
   display: flex;
   width: 1100px;
@@ -30,7 +29,8 @@
   padding: 0;
 }
 
-.menu li, .menu a {
+.menu li,
+.menu a {
   text-decoration: none;
   color: inherit;
   display: flex;
@@ -64,7 +64,8 @@
   align-items: center;
 }
 
-.card-form, .perfil-card {
+.card-form,
+.perfil-card {
   width: 420px;
   padding: 20px;
   border-radius: 14px;
@@ -73,20 +74,22 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
-.card-form form, .perfil-card {
+.card-form form,
+.perfil-card {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.card-form label, .perfil-card label {
+.card-form label,
+.perfil-card label {
   font-size: 14px;
   opacity: 0.85;
   text-align: left;
 }
 
-.card-form input, 
-.card-form select, 
+.card-form input,
+.card-form select,
 .card-form textarea,
 .perfil-card input {
   padding: 10px;
@@ -98,7 +101,6 @@
   width: 100%;
 }
 
-
 .row {
   display: flex;
   gap: 15px;
@@ -108,8 +110,8 @@
   flex: 1;
 }
 
-
-.card-form button, .btn-editar {
+.card-form button,
+.btn-editar {
   margin-top: 10px;
   padding: 12px;
   background: #4c8df5;
@@ -121,12 +123,13 @@
   transition: 0.2s;
 }
 
-.card-form button:hover, .btn-editar:hover {
+.card-form button:hover,
+.btn-editar:hover {
   background: #3574d4;
 }
 
-
-.section-historico, .section-perfil {
+.section-historico,
+.section-perfil {
   width: 100%;
   text-align: center;
 }
@@ -134,13 +137,12 @@
 .placeholder {
   padding: 25px;
   border-radius: 12px;
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
   text-align: center;
   color: #ddd;
   width: 420px;
   margin: 20px auto;
 }
-
 
 .perfil-card {
   margin: 0 auto;
@@ -223,12 +225,7 @@
   left: 20px;
   right: 20px;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    #074dbe,
-    transparent
-  );
+  background: linear-gradient(to right, transparent, #074dbe, transparent);
 }
 
 .aluno-card:last-child::after {
@@ -237,8 +234,8 @@
 .estudantes-lista {
   display: flex;
   flex-direction: column;
-  align-items: center;    
-  gap: 25px;             
+  align-items: center;
+  gap: 25px;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
@@ -253,7 +250,7 @@
 .estudante-lista-cards {
   display: flex;
   flex-direction: column;
-  align-items: center;    
+  align-items: center;
   gap: 25px;
   width: 100%;
 }
@@ -267,7 +264,7 @@
   background: rgba(44, 43, 43, 0.948);
   border: 1px solid rgba(255, 255, 255, 0.15);
   width: 100%;
-  max-width: 600px; 
+  max-width: 600px;
 }
 
 .estudante-info {
@@ -306,4 +303,423 @@
 
 .estudante-btn-delete:hover {
   background-color: #c0392b;
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.time-slot {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+}
+
+.time-slot.selected {
+  background: #4c8df5;
+  border-color: #fff;
+}
+
+.btn-confirmar {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-confirmar:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.no-slots {
+  color: #ff6b6b;
+  font-size: 14px;
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.time-slot {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+}
+
+.time-slot.selected {
+  background: #4c8df5;
+  border-color: #fff;
+}
+
+.btn-confirmar {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-confirmar:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.no-slots {
+  color: #ff6b6b;
+  font-size: 14px;
+}
+
+
+.historico-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  padding: 20px;
+}
+
+.agendamento-card-new {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+  min-height: 140px;
+}
+
+.agendamento-card-new:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(76, 141, 245, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-accent {
+  width: 6px;
+  background: #4c8df5;
+}
+
+.agendamento-card-new.agendado_aluno .card-accent,
+.agendamento-card-new.agendado .card-accent {
+  background: #00ff88;
+}
+.agendamento-card-new.cancelado .card-accent {
+  background: #ff4d4d;
+}
+
+.card-main-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prof-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar-circle {
+  width: 45px;
+  height: 45px;
+  background: rgba(76, 141, 245, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4c8df5;
+  font-size: 20px;
+}
+
+.prof-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #fff;
+}
+
+.especialidade {
+  margin: 0;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.datetime-row {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #ddd;
+}
+
+.datetime-row span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-new {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.badge-new.agendado_aluno {
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.1);
+}
+.badge-new.cancelado {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
+.card-actions {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-cancel-new {
+  background: rgba(255, 77, 77, 0.1);
+  color: #ff4d4d;
+  border: 1px solid rgba(255, 77, 77, 0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-cancel-new:hover {
+  background: #ff4d4d;
+  color: #fff;
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-form {
+  width: 420px;
+  padding: 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.23);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  color: #fff;
+}
+
+.card-form h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.card-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-form label {
+  font-size: 14px;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.card-form input,
+.card-form select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  font-size: 15px;
+  width: 100%;
+  outline: none;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-editar {
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.btn-editar:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-editar.active {
+  background: #4c8df5;
+  border-color: #fff;
+  box-shadow: 0 0 10px rgba(76, 141, 245, 0.5);
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.time-slot {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.2s;
+  font-size: 14px;
+}
+
+.time-slot:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.time-slot.selected {
+  background: #4c8df5;
+  border-color: #fff;
+  font-weight: bold;
+}
+
+.no-slots {
+  color: #ff6b6b;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 8px;
+}
+
+.btn-confirmar {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-confirmar:hover:not(:disabled) {
+  background: #218838;
+  transform: translateY(-2px);
+}
+
+.btn-confirmar:disabled {
+  background: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+  .card-form {
+    width: 90%;
+  }
+  .time-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.btn-delete-historico {
+  background: rgba(255, 77, 77, 0.1);
+  color: #ff4d4d;
+  border: 1px solid rgba(255, 77, 77, 0.3);
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-delete-historico:hover {
+  background: #ff4d4d;
+  color: white;
+}
+
+.dia-tag.realizado {
+  color: #28a745;
+  border-color: #28a745;
+  background: rgba(40, 167, 69, 0.1);
+}
+.dia-tag.ausente {
+  color: #ffc107;
+  border-color: #ffc107;
+  background: rgba(255, 193, 7, 0.1);
+}
+.dia-tag.agendado_aluno {
+  color: #4da3ff;
+  border-color: #4da3ff;
+  background: rgba(77, 163, 255, 0.1);
+}
+
+.btn-limpar-filtros {
+  padding: 14px 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 18px; 
 }

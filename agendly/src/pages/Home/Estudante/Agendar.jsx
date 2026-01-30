@@ -1,201 +1,161 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import {
-  listarProfissionais,
-  listarServicos
-} from "../../../services/usuarioService";
+import { listarProfissionais, listarServicos } from "../../../services/usuarioService";
+import { listarHorariosDisponiveis, buscarDiasTrabalho } from "../../../services/disponibilidadeService";
 import { criarAgendamento } from "../../../services/agendamentoService";
-import { listarHorariosDisponiveis } from "../../../services/disponibilidadeService";
 
 export default function Agendar() {
   const [profissionais, setProfissionais] = useState([]);
   const [servicos, setServicos] = useState([]);
-
   const [profissionalId, setProfissionalId] = useState("");
   const [servicoId, setServicoId] = useState("");
   const [data, setData] = useState("");
   const [horario, setHorario] = useState("");
-
   const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
+  const [diasAtendimento, setDiasAtendimento] = useState([]);
 
-  // 🔹 Carregar profissionais e serviços
   useEffect(() => {
-    listarProfissionais()
-      .then(res => setProfissionais(res.data))
-      .catch(err => console.error("Erro ao listar profissionais", err));
-
-    listarServicos()
-      .then(res => setServicos(res.data))
-      .catch(err => console.error("Erro ao listar serviços", err));
+    listarProfissionais().then(res => setProfissionais(res.data || []));
+    listarServicos().then(res => setServicos(res.data || []));
   }, []);
 
-  const profissionaisFiltrados = profissionais.filter(p => {
-  if (!servicoId) return true;
-
-  const servico = servicos.find(s => s.id === servicoId);
-  if (!servico) return true;
-
-  const nomeServico = servico.nome?.toLowerCase() || "";
-  const cargoProf = p.cargo?.toLowerCase() || "";
-
-  if (nomeServico.includes("psico"))
-    return cargoProf.includes("psico") || cargoProf.includes("social");
-
-  if (nomeServico.includes("pedag"))
-    return cargoProf.includes("pedag");
-
-  return true;
-});
-
-
-  // 🔹 Buscar horários disponíveis quando profissional + data mudarem
   useEffect(() => {
-    if (!profissionalId || !data) {
-      setHorariosDisponiveis([]);
-      setHorario("");
-      return;
+    if (profissionalId && data) {
+      listarHorariosDisponiveis(profissionalId, data)
+        .then(res => setHorariosDisponiveis(res.data || []))
+        .catch(() => setHorariosDisponiveis([]));
     }
-
-    listarHorariosDisponiveis(profissionalId, data)
-      .then(res => {
-        setHorariosDisponiveis(res.data);
-        setHorario("");
-      })
-      .catch(err => {
-        console.error("Erro ao buscar horários", err);
-        setHorariosDisponiveis([]);
-      });
   }, [profissionalId, data]);
 
-  // 🔹 Enviar agendamento
-  async function handleSubmit(e) {
+  const selecionarProfissional = async (id) => {
+    setProfissionalId(id);
+    setData("");
+    setHorario("");
+    setHorariosDisponiveis([]);
+    setDiasAtendimento([]); 
+    
+    try {
+      const res = await buscarDiasTrabalho(id);
+      
+      const ordemSemana = {
+        "MONDAY": 1, "TUESDAY": 2, "WEDNESDAY": 3, "THURSDAY": 4, 
+        "FRIDAY": 5, "SATURDAY": 6, "SUNDAY": 7
+      };
+
+      const traducao = {
+        MONDAY: "Segunda", TUESDAY: "Terça", WEDNESDAY: "Quarta", 
+        THURSDAY: "Quinta", FRIDAY: "Sexta", SATURDAY: "Sábado", SUNDAY: "Domingo"
+      };
+      
+      if (res.data && res.data.length > 0) {
+        const diasOrdenados = [...res.data].sort((a, b) => 
+          (ordemSemana[a] || 99) - (ordemSemana[b] || 99)
+        );
+
+        setDiasAtendimento(diasOrdenados.map(dia => traducao[dia] || dia));
+      }
+    } catch (err) {
+      console.error("Erro ao carregar dias de atendimento:", err);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-    if (!usuarioLogado) {
-      alert("Sessão expirada. Faça login novamente.");
-      return;
-    }
-
-    if (!profissionalId || !servicoId || !data || !horario) {
-      alert("Preencha todos os campos.");
-      return;
-    }
-
+    const storedUser = localStorage.getItem("usuarioLogado");
+    if (!storedUser) return alert("Sessão expirada.");
+    
+    const user = JSON.parse(storedUser);
     const payload = {
       profissionalId,
       servicoId,
-      estudanteId: usuarioLogado.estudanteId || usuarioLogado.id,
+      estudanteId: user?.id, 
       dataHorarioInicio: `${data}T${horario}:00`,
       observacaoAluno: ""
     };
 
-    console.log("Payload enviado:", payload);
-
     try {
       await criarAgendamento(payload);
       alert("Agendamento realizado com sucesso!");
-      setData("");
-      setHorario("");
-      setProfissionalId("");
-      setServicoId("");
-      setHorariosDisponiveis([]);
+      window.location.reload();
     } catch (err) {
-      console.error("Erro do servidor:", err.response?.data);
-      alert(
-        err.response?.data?.message ||
-          "Erro ao realizar agendamento."
-      );
+      alert("Erro ao realizar agendamento.");
     }
-  }
+  };
 
   return (
-    <div className="content-agendar">
-      <header className="header">
-        <h1>Novo Agendamento</h1>
-      </header>
-
+    <div className="content">
       <div className="card-form">
+        <h2>Agendar Consulta</h2>
         <form onSubmit={handleSubmit}>
-          {/* SERVIÇO */}
-          <label>Tipo de Atendimento</label>
-          <select
-            value={servicoId}
-            onChange={e => {
-              setServicoId(e.target.value);
-              setProfissionalId("");
-              setData("");
-              setHorario("");
-              setHorariosDisponiveis([]);
-            }}
-            required
-          >
-            <option value="">Selecione o Serviço</option>
-            {servicos.map(s => (
-              <option key={s.id} value={s.id}>
-                {s.nome}
-              </option>
-            ))}
+          <label>1. Escolha o Serviço</label>
+          <select value={servicoId} onChange={e => { setServicoId(e.target.value); setProfissionalId(""); setDiasAtendimento([]); }}>
+            <option value="">Selecione...</option>
+            {servicos.map(s => <option key={s.id} value={s.id}>{s.nome}</option>)}
           </select>
 
-          {/* PROFISSIONAL */}
-          <label>Profissional Especialista</label>
-          <select
-            value={profissionalId}
-            onChange={e => {
-              setProfissionalId(e.target.value);
-              setData("");
-              setHorario("");
-            }}
-            required
-            disabled={!servicoId}
-          >
-            <option value="">
-              {servicoId
-                ? "Selecione o Profissional"
-                : "Escolha um serviço primeiro"}
-            </option>
+          {servicoId && (
+            <div className="section">
+              <label>2. Especialistas Disponíveis</label>
+              <div className="row">
+                {profissionais .filter(p => p.cargo?.toLowerCase() === servicos.find(s => s.id === servicoId)?.nome.toLowerCase()).map(p => (
+                    <button type="button" key={p.id}className={profissionalId === p.id ? "btn-editar active" : "btn-editar"}onClick={() => selecionarProfissional(p.id)}>
+                      {p.nome}
+                    </button>
+                  ))}
+              </div>
+              
+              {diasAtendimento.length > 0 && (
+                <div style={{ 
+                  marginTop: '15px', 
+                  padding: '12px', 
+                  backgroundColor: 'rgba(77, 163, 255, 0.1)', 
+                  borderRadius: '8px',
+                  border: '1px solid rgba(77, 163, 255, 0.4)'
+                }}>
+                  <p style={{ fontSize: '13px', color: '#4da3ff', margin: 0, textAlign: 'center', fontWeight: '500' }}>
+                    📅 Atendimento: {diasAtendimento.join(", ")}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
 
-            {profissionaisFiltrados.map(p => (
-              <option key={p.id} value={p.id}>
-                {p.nome} ({p.cargo})
-              </option>
-            ))}
-          </select>
+          {profissionalId && (
+            <div className="section">
+              <label>3. Escolha a Data</label>
+              <input type="date" value={data} min={new Date().toISOString().split("T")[0]} onChange={e => { setData(e.target.value); setHorario(""); }} required />
+            </div>
+          )}
 
-          {/* DATA */}
-          <label>Data</label>
-          <input
-            type="date"
-            value={data}
-            onChange={e => setData(e.target.value)}
-            required
-            disabled={!profissionalId}
-            min={new Date().toISOString().split("T")[0]}
-          />
+          {data && (
+            <div className="section">
+              <label>4. Horários Disponíveis</label>
+              <div className="time-grid">
+                {horariosDisponiveis.length > 0 ? (
+                  horariosDisponiveis.map((h, i) => {
+                    const t = Array.isArray(h) 
+                      ? `${String(h[0]).padStart(2, '0')}:${String(h[1]).padStart(2, '0')}` 
+                      : h.substring(0,5);
+                    return (
+                      <div 
+                        key={i} 
+                        className={horario === t ? "time-slot selected" : "time-slot"} 
+                        onClick={() => setHorario(t)}
+                      >
+                        {t}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p className="no-slots" style={{ gridColumn: '1/-1' }}>
+                    Sem horários disponíveis para esta data.
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
 
-          {/* HORÁRIO */}
-          <label>Horário</label>
-          <select
-            value={horario}
-            onChange={e => setHorario(e.target.value)}
-            required
-            disabled={horariosDisponiveis.length === 0}
-          >
-            <option value="">
-              {horariosDisponiveis.length
-                ? "Selecione um horário"
-                : "Nenhum horário disponível"}
-            </option>
-
-            {horariosDisponiveis.map(h => (
-              <option key={h} value={h}>
-                {h}
-              </option>
-            ))}
-          </select>
-
-          <button type="submit" className="btn-agendar">
+          <button type="submit" className="btn-confirmar" disabled={!horario}>
             Confirmar Agendamento
           </button>
         </form>
