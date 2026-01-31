@@ -16,12 +16,12 @@ export function listarServicos() {
     return api.get("/servico"); 
 }
 
-export function criarEstudante(dados) {
-    return api.post("/estudantes/registrar", dados);
-}
-
 export function criarUsuario(dados) {
     return api.post("/usuario/registrar", dados);
+}
+
+export function criarEstudante(dados) {
+    return api.post("/estudantes/registrar", dados);
 }
 
 export function buscarUsuarioPorId(id) {

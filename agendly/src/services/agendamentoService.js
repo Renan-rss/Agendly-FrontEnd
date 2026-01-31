@@ -46,6 +46,12 @@ export function listarAgendamentos() {
 
 export function criarAgendamento(payload) {
   return api.post("/agendamentos", payload);
+export function criarAgendamento(dados) {
+  return api.post("/agendamentos", dados);
+}
+
+export function listarAgendamentos() {
+  return api.get("/agendamentos");
 }
 
 export function cancelarAgendamento(id) {
@@ -70,4 +76,13 @@ export function salvarRegistroAtendimento(dados) {
 
 export function listarTodosAgendamentos() {
     return api.get("/agendamentos"); 
+  return api.get("/agendamentos/profissional");
+}
+
+export function finalizarAtendimento(id) {
+  return api.put(`/agendamentos/finalizar/${id}`);
+}
+
+export function buscarEstatisticasConcluidas() {
+  return api.get("/agendamentos/estatisticas/concluidos");
 }
