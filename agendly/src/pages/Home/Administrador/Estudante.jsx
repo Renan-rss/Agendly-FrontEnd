@@ -52,13 +52,7 @@ export default function Alunos() {
         
         <div className="search-container">
           <FaSearch className="search-icon" />
-          <input
-            type="text"
-            placeholder="Pesquisar por nome ou matrícula..."
-            value={busca}
-            onChange={(e) => setBusca(e.target.value)}
-            className="search-input"
-          />
+          <input type="text" placeholder="Pesquisar por nome ou matrícula..." value={busca} onChange={(e) => setBusca(e.target.value)} className="search-input"/>
         </div>
       </header>
 

@@ -1,7 +1,6 @@
 import { FaUser, FaLock } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../services/api";
 import apiPublica from "../../services/apiPublica";
 import "../Login/Login.css";
 
@@ -42,44 +41,22 @@ export default function ResetSenha() {
         <h1>Redefinir Senha</h1>
 
         <div className="input-field">
-          <input
-            type="email"
-            placeholder="Digite seu e-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <input type="email" placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
           <FaUser className="icon" />
         </div>
 
         <div className="input-field">
-          <input
-            type="password"
-            placeholder="Nova senha"
-            value={novaSenha}
-            onChange={(e) => setNovaSenha(e.target.value)}
-            required
-          />
+          <input type="password" placeholder="Nova senha" value={novaSenha} onChange={(e) => setNovaSenha(e.target.value)} required/>
           <FaLock className="icon" />
         </div>
 
         <div className="input-field">
-          <input
-            type="password"
-            placeholder="Confirmar nova senha"
-            value={confirmarSenha}
-            onChange={(e) => setConfirmarSenha(e.target.value)}
-            required
-          />
+          <input type="password" placeholder="Confirmar nova senha" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} required/>
           <FaLock className="icon" />
         </div>
 
         <button type="submit">Redefinir</button>
-        <button
-          type="button"
-          style={{ marginTop: "10px" }}
-          onClick={() => navigate("/")}
-        >
+        <button type="button" style={{ marginTop: "10px" }} onClick={() => navigate("/")}>
           Voltar
         </button>
       </form>

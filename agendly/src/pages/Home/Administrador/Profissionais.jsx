@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { listarProfissionais, deletarProfissional } from "../../../services/profissionalService.js";
 import { FaTrash, FaUserMd, FaEnvelope, FaIdCard, FaSearch } from "react-icons/fa";
@@ -42,25 +41,19 @@ export default function Profissionais() {
   );
 
   return (
-    <div className="estudantes-lista"> {/* Mesma classe da tela de alunos */}
-      <header className="estudantes-header"> {/* Mesma classe da tela de alunos */}
+    <div className="estudantes-lista"> 
+      <header className="estudantes-header"> 
         <div className="header-titles">
           <h1>Profissionais</h1>
         </div>
         
         <div className="search-container">
           <FaSearch className="search-icon" />
-          <input
-            type="text"
-            placeholder="Pesquisar por nome ou email..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
+          <input type="text" placeholder="Pesquisar por nome ou email..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="search-input"/>
         </div>
       </header>
 
-      <div className="estudante-lista-cards"> {/* Mesma classe da tela de alunos */}
+      <div className="estudante-lista-cards"> 
         {loading ? (
           <div className="empty-state">
             <p>Carregando profissionais...</p>
@@ -71,7 +64,7 @@ export default function Profissionais() {
           </div>
         ) : (
           profissionaisFiltrados.map((prof) => (
-            <div key={prof.id} className="estudante-card"> {/* Mesma classe do card de aluno */}
+            <div key={prof.id} className="estudante-card"> 
               <div className="estudante-info">
                 <div className="estudante-avatar">
                   <FaUserMd />
@@ -82,11 +75,7 @@ export default function Profissionais() {
                   <p><FaIdCard /> {prof.cargo} {prof.registroProf ? `- ${prof.registroProf}` : ''}</p>
                 </div>
               </div>
-              <button
-                className="estudante-btn-delete"
-                onClick={() => handleDeletar(prof.id)}
-                title="Excluir Profissional"
-              >
+              <button  className="estudante-btn-delete"  onClick={() => handleDeletar(prof.id)}  title="Excluir Profissional">
                 <FaTrash />
               </button>
             </div>

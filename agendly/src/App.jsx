@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 
-
 import Login from "./pages/Login/Login"; 
 import CadastroUsuario from "./pages/CadastroUsuario/CadastroUsuario"; 
 import ResetSenha from "./pages/ResetSenha/ResetSenha"; 
@@ -12,6 +11,8 @@ import CadastrarProfissional from "./pages/Home/Administrador/CadastrarProfissio
 import Profissionais from "./pages/Home/Administrador/Profissionais";
 import CadastrarAdmin from "./pages/Home/Administrador/CadastrarAdmin";
 import Admins from "./pages/Home/Administrador/Admins";
+import CadastrarServico from "./pages/Home/Administrador/CadastrarServico";
+import Servicos from "./pages/Home/Administrador/Servicos";
 
 import HomeStudent from "./pages/Home/Estudante/HomeEstudante";
 import Agendar from "./pages/Home/Estudante/Agendar";
@@ -45,6 +46,8 @@ export default function App() {
             <Route path="alunos" element={<Estudante />} />
             <Route path="admins" element={<Admins />} />
             <Route path="cadastrar-admin" element={<CadastrarAdmin />} />
+            <Route path="cadastrar-servico" element={<CadastrarServico />} />
+            <Route path="servicos" element={<Servicos />} />
           </Route>
         
         {/**</Route>  */}

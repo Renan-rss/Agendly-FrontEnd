@@ -4,14 +4,6 @@ export default function PrivateRoute({ allowedRoles }) {
   const token = localStorage.getItem("token");
   let role = localStorage.getItem("role");
 
-  if (role) {
-    try {
-      role = JSON.parse(role);
-    } catch (e) {
-     
-    }
-  }
-
   console.group("Verificação PrivateRoute");
   console.log("Token encontrado?", !!token);
   console.log("Role no Storage:", role);

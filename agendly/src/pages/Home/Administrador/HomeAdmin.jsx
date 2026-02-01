@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { logout } from "../../../services/authService";
 import {
@@ -7,6 +6,8 @@ import {
   FaUserShield, 
   FaChartLine,
   FaSignOutAlt,
+  FaPlusCircle, 
+  FaConciergeBell,
 } from "react-icons/fa";
 
 import "./HomeAdmin.css";
@@ -46,6 +47,18 @@ export default function HomeAdmin() {
           <li>
             <Link to="/admin/admins">
               <FaUserShield className="icon" /> Administradores
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/admin/servicos">
+              <FaConciergeBell className="icon" /> Serviços
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/admin/cadastrar-servico">
+              <FaPlusCircle className="icon" /> Cadastrar Serviço
             </Link>
           </li>
 

@@ -1,15 +1,15 @@
 import { api } from "./api";
 
-export function listarEstudantes() {
-    return api.get("/usuario"); 
-}
-
 export function listarUsuarios() {
     return api.get("/usuario"); 
 }
 
 export function listarProfissionais() {
-    return api.get("/usuario");
+    return api.get("/profissionais"); 
+}
+
+export function listarEstudantes() {
+    return api.get("/usuario"); 
 }
 
 export function listarServicos() {

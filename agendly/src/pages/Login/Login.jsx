@@ -10,29 +10,36 @@ export default function Login() {
   const [senha, setSenha] = useState("");
 
   
-async function handleSubmit(e) {
-  e.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-  try {
-    const response = await login({
-      email: email,
-      senha: senha
-    });
-    console.log("LOGIN.JSX → retorno do login():", response);
+    try {
+      const response = await login({
+        email: email,
+        senha: senha
+      });
+      
+      console.log("LOGIN.JSX → retorno do login():", response);
 
-    const role = response.role;
+      const { token, role, id } = response;
 
+      localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
 
-    if (role === "ADMIN") navigate("/admin");
-    else if (role === "ESTUDANTE") navigate("/estudante");
-    else if (role === "PROFISSIONAL") navigate("/profissional");
+      localStorage.setItem("usuarioLogado", JSON.stringify({
+        id: id,
+        role: role
+      }));
 
-  } catch (error) {
-    alert("Usuário ou senha inválidos");
-    console.error(error);
+      if (role === "ADMIN") navigate("/admin");
+      else if (role === "ESTUDANTE") navigate("/estudante");
+      else if (role === "PROFISSIONAL") navigate("/profissional");
+
+    } catch (error) {
+      alert("Usuário ou senha inválidos");
+      console.error(error);
+    }
   }
-
-}
 
   return (
     <div className="container">
@@ -50,9 +57,6 @@ async function handleSubmit(e) {
         </div>
 
         <div className="recall-forget">
-          <label>
-            <input type="checkbox" /> Lembrar de mim
-          </label>
           <a href="/reset-senha">Esqueceu a senha?</a>
         </div>
 
